@@ -47,7 +47,7 @@ export function ContactForm() {
 
         <div className="max-w-md mx-auto">
           {isSuccess ? (
-            <div className="bg-green-100 border-green-400 text-green-700 px-4 py-3 rounded mb-6">
+            <div className="bg-green-100 border border-green-400 text-green-700 px-4 py-3 rounded mb-6">
               Mensagem enviada com sucesso! Entraremos em contato em breve.
             </div>
           ) : null}

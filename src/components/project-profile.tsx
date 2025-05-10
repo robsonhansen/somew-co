@@ -3,7 +3,7 @@
 import Image from "next/image";
 import { useLanguage } from "@/components/language-provider";
 
-// Sample data for projects
+// Dados dos projetos com vídeos gratuitos
 const projectsData = {
   "campanha-verao": {
     name: "Campanha Verão",
@@ -18,7 +18,7 @@ const projectsData = {
         client: "Marca X",
         year: 2023,
         imageUrl: "/placeholder.svg?height=600&width=800",
-        videoUrl: "https://drive.google.com/file/d/1HV6BI6xCok6TaBVl87clsTKdstvW5OOP/view?usp=drive_link",
+        videoUrl: "https://player.vimeo.com/video/278939898", // Praia
       },
       {
         id: 2,
@@ -26,7 +26,7 @@ const projectsData = {
         client: "Marca X",
         year: 2023,
         imageUrl: "/placeholder.svg?height=600&width=800",
-        videoUrl: "https://example.com/video2",
+        videoUrl: "https://cdn.pixabay.com/vimeo/778931388/urban-beach-104086.mp4", // Praia urbana
       },
       {
         id: 3,
@@ -34,7 +34,8 @@ const projectsData = {
         client: "Marca X",
         year: 2023,
         imageUrl: "/placeholder.svg?height=600&width=800",
-        videoUrl: "https://example.com/video3",
+        videoUrl:
+          "https://cdn.videvo.net/videvo_files/video/premium/video0024/small_watermarked/903_903-0003_preview.mp4", // Making of
       },
     ],
   },
@@ -51,7 +52,7 @@ const projectsData = {
         client: "Banda X",
         year: 2023,
         imageUrl: "/placeholder.svg?height=600&width=800",
-        videoUrl: "https://example.com/video4",
+        videoUrl: "https://cdn.videvo.net/videvo_files/video/free/video0454/small_watermarked/13_001_preview.mp4", // Cidade à noite
       },
       {
         id: 2,
@@ -59,11 +60,10 @@ const projectsData = {
         client: "Banda X",
         year: 2023,
         imageUrl: "/placeholder.svg?height=600&width=800",
-        videoUrl: "https://example.com/video5",
+        videoUrl: "https://cdn.pixabay.com/vimeo/878776149/night-city-lights-181958.mp4", // Estilo noturno alternativo
       },
     ],
   },
-  // Default data for other projects
   default: {
     name: "Projeto",
     description: {
@@ -77,7 +77,7 @@ const projectsData = {
         client: "Cliente",
         year: 2023,
         imageUrl: "/placeholder.svg?height=600&width=800",
-        videoUrl: "https://example.com/video",
+        videoUrl: "https://cdn.videvo.net/videvo_files/video/free/video0453/small_watermarked/09_002_preview.mp4", // Genérico
       },
     ],
   },
@@ -90,7 +90,6 @@ interface ProjectProfileProps {
 export function ProjectProfile({ slug }: ProjectProfileProps) {
   const { language } = useLanguage();
 
-  // Get project data or use default if not found
   const projectData = projectsData[slug as keyof typeof projectsData] || projectsData.default;
 
   return (
@@ -103,7 +102,13 @@ export function ProjectProfile({ slug }: ProjectProfileProps) {
 
         <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
           {projectData.works.map((work) => (
-            <div key={work.id} className="group cursor-pointer">
+            <a
+              key={work.id}
+              href={work.videoUrl}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="group cursor-pointer"
+            >
               <div className="aspect-video relative overflow-hidden mb-4">
                 <Image
                   src={work.imageUrl || "/placeholder.svg"}
@@ -119,7 +124,7 @@ export function ProjectProfile({ slug }: ProjectProfileProps) {
               <p className="text-gray-600">
                 {work.client} | {work.year}
               </p>
-            </div>
+            </a>
           ))}
         </div>
       </div>

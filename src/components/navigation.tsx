@@ -50,7 +50,7 @@ export function Navigation() {
         isVisible ? "translate-y-0 opacity-100" : "translate-y-20 opacity-0"
       }`}
     >
-      <div className="flex items-center justify-center bg-black backdrop-blur-md rounded-full px-8 py-2.5 shadow-lg border-white/5">
+      <div className="flex items-center justify-center bg-black backdrop-blur-md rounded-full px-8 py-2.5 shadow-lg border border-white/5">
         <Link
           href="/"
           className={`flex flex-col items-center mx-4 transition-colors ${
