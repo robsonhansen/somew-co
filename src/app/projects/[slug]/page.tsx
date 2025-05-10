@@ -3,14 +3,13 @@ import { Navigation } from "@/components/navigation";
 import { ProjectProfile } from "@/components/project-profile";
 import { Footer } from "@/components/footer";
 
-// Definição correta de tipos para páginas no App Router
-type Props = {
-  params: { slug: string };
-  searchParams: { [key: string]: string | string[] | undefined };
-};
+// Definição de tipos para os parâmetros da página
+interface PageParams {
+  slug: string;
+}
 
 // Componente de página com a tipagem correta
-export default function ProjectPage({ params, searchParams }: Props) {
+export default function ProjectPage({ params }: { params: PageParams }) {
   return (
     <main className="min-h-screen flex flex-col">
       <Header />
@@ -21,4 +20,15 @@ export default function ProjectPage({ params, searchParams }: Props) {
       <Navigation />
     </main>
   );
+}
+
+// Função opcional para gerar parâmetros estáticos (se necessário)
+export async function generateStaticParams() {
+  // Retorna um array de possíveis valores para slug
+  // Isso é opcional, mas pode ajudar com a tipagem
+  return [
+    { slug: "campanha-verao" },
+    { slug: "videoclipe-banda-x" },
+    // Adicione outros slugs conforme necessário
+  ];
 }
