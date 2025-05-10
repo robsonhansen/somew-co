@@ -1,7 +1,7 @@
-import { Header } from "@/components/header"
-import { Navigation } from "@/components/navigation"
-import { ProjectProfile } from "@/components/project-profile"
-import { Footer } from "@/components/footer"
+import { Header } from "@/components/header";
+import { Navigation } from "@/components/navigation";
+import { ProjectProfile } from "@/components/project-profile";
+import { Footer } from "@/components/footer";
 
 export default function ProjectPage({ params }: { params: { slug: string } }) {
   return (
@@ -13,5 +13,5 @@ export default function ProjectPage({ params }: { params: { slug: string } }) {
       <Footer />
       <Navigation />
     </main>
-  )
+  );
 }
