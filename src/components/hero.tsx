@@ -26,12 +26,11 @@ export function Hero() {
           className="absolute inset-0 w-full h-full object-cover opacity-60 scale-110 pointer-events-none"
           src="https://www.youtube.com/embed/NoC8fDjzmMc?autoplay=1&mute=1&controls=0&loop=1&playlist=NoC8fDjzmMc&modestbranding=1&showinfo=0&rel=0"
           title="SomewCo Video"
-          frameBorder="0"
           allow="autoplay; fullscreen"
           allowFullScreen
         />
       ) : (
-        <Image src="/hero-fallback.jpg" alt="Background" fill priority className="object-cover opacity-60" />
+        <Image src="/hero-poster.JPG" alt="Background" fill priority className="object-cover opacity-60" />
       )}
 
       {/* Camada escura sobreposta */}
