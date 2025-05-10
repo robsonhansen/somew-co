@@ -3,7 +3,13 @@ import { Navigation } from "@/components/navigation";
 import { ProjectProfile } from "@/components/project-profile";
 import { Footer } from "@/components/footer";
 
-export default function ProjectPage({ params }: { params: { slug: string } }) {
+interface ProjectPageProps {
+  params: {
+    slug: string;
+  };
+}
+
+const ProjectPage = ({ params }: ProjectPageProps) => {
   return (
     <main className="min-h-screen flex flex-col">
       <Header />
@@ -14,4 +20,6 @@ export default function ProjectPage({ params }: { params: { slug: string } }) {
       <Navigation />
     </main>
   );
-}
+};
+
+export default ProjectPage;
