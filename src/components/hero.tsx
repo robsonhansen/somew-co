@@ -6,7 +6,6 @@ import Image from "next/image";
 
 export function Hero() {
   const { t } = useLanguage();
-  const [videoError, setVideoError] = useState(false);
   const [showText, setShowText] = useState(true);
   const [videoStarted, setVideoStarted] = useState(false);
 
@@ -21,19 +20,16 @@ export function Hero() {
 
   return (
     <section className="relative h-screen w-full bg-black text-white overflow-hidden">
-      {/* Vídeo de fundo com zoom */}
-      {videoStarted && !videoError ? (
-        <video
-          autoPlay
-          muted
-          loop
-          playsInline
-          className="absolute inset-0 w-full h-full object-cover opacity-60 transform scale-110"
-          onError={() => setVideoError(true)}
-        >
-          <source src="/hero-video.mp4" type="video/mp4" />
-          Seu navegador não suporta vídeos HTML5.
-        </video>
+      {/* Vídeo de fundo via YouTube */}
+      {videoStarted ? (
+        <iframe
+          className="absolute inset-0 w-full h-full object-cover opacity-60 scale-110 pointer-events-none"
+          src="https://www.youtube.com/embed/NoC8fDjzmMc?autoplay=1&mute=1&controls=0&loop=1&playlist=NoC8fDjzmMc&modestbranding=1&showinfo=0&rel=0"
+          title="SomewCo Video"
+          frameBorder="0"
+          allow="autoplay; fullscreen"
+          allowFullScreen
+        />
       ) : (
         <Image src="/hero-fallback.jpg" alt="Background" fill priority className="object-cover opacity-60" />
       )}
