@@ -43,7 +43,7 @@ export function Hero() {
         }`}
       >
         <h1 className="text-5xl md:text-6xl font-bold mb-2">Somew.Co</h1>
-        <p className="text-sm md:text-lg">{t("Histórias sentidas. Imagens pensadas")}</p>
+        <p className="text-sm md:text-lg">{t("slogan")}</p>
       </div>
     </section>
   );

@@ -34,6 +34,7 @@ const translations = {
     followUs: "Siga-nos",
     messagePlaceholder: "Escreva sua mensagem",
     copyright: "© 2025 Somew.co. Todos os direitos reservados.",
+    slogan: "Histórias sentidas. Imagens pensadas",
   },
   en: {
     home: "Home",
@@ -58,6 +59,7 @@ const translations = {
     followUs: "Follow us",
     messagePlaceholder: "Write your message",
     copyright: "© 2025 Somew.co. All rights reserved.",
+    slogan: "Stories felt. Images crafted.",
   },
 };
 
