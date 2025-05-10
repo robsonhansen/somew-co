@@ -3,7 +3,14 @@ import { Navigation } from "@/components/navigation";
 import { ProjectProfile } from "@/components/project-profile";
 import { Footer } from "@/components/footer";
 
-export default function ProjectPage({ params }: { params: { slug: string } }) {
+// Definição correta de tipos para páginas no App Router
+type Props = {
+  params: { slug: string };
+  searchParams: { [key: string]: string | string[] | undefined };
+};
+
+// Componente de página com a tipagem correta
+export default function ProjectPage({ params, searchParams }: Props) {
   return (
     <main className="min-h-screen flex flex-col">
       <Header />
