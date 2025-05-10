@@ -3,13 +3,22 @@ import { Navigation } from "@/components/navigation";
 import { ProjectProfile } from "@/components/project-profile";
 import { Footer } from "@/components/footer";
 
-// Definição de tipos compatível com o Next.js na Vercel
-export default function ProjectPage({ params }: { params: { slug: string } }) {
+interface ProjectPageProps {
+  params: {
+    slug: string | string[] | undefined;
+  };
+}
+
+export default function ProjectPage({ params }: ProjectPageProps) {
+  // Garantir que 'slug' seja sempre uma string
+  const slug = Array.isArray(params.slug) ? params.slug[0] : params.slug;
+
+  // Se 'slug' for undefined, podemos dar um valor padrão, como uma string vazia.
   return (
     <main className="min-h-screen flex flex-col">
       <Header />
       <div className="pt-24">
-        <ProjectProfile slug={params.slug} />
+        <ProjectProfile slug={slug ?? ""} /> {/* Passando um valor padrão se for undefined */}
       </div>
       <Footer />
       <Navigation />
