@@ -30,7 +30,7 @@ export function Hero() {
           allowFullScreen
         />
       ) : (
-        <Image src="/hero-poster2.png" alt="Background" fill priority className="object-cover opacity-60" />
+        <Image src="/#" alt="Background" fill priority className="object-cover opacity-60" />
       )}
 
       {/* Camada escura sobreposta */}
