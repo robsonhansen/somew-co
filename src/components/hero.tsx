@@ -23,18 +23,19 @@ export function Hero() {
       {/* Vídeo de fundo via Vimeo */}
       {videoStarted ? (
         <iframe
-          className="absolute inset-0 w-full h-full object-cover opacity-60 scale-110 pointer-events-none"
-          src="https://player.vimeo.com/video/1046975324?badge=0&autopause=0&player_id=0&app_id=58479&autoplay=1&loop=1&autopause=0&muted=1&controls=0&title=0&byline=0&portrait=0" // Nova URL do Vimeo com parâmetros de autoplay e loop
+          className="absolute inset-0 w-full h-full object-cover pointer-events-none" // Removido opacity-60 e scale-110 para preenchimento total
+          src="https://player.vimeo.com/video/1046975324?badge=0&autopause=0&player_id=0&app_id=58479&autoplay=1&loop=1&autopause=0&muted=1&controls=0&title=0&byline=0&portrait=0&background=1" // Nova URL do Vimeo com parâmetros de autoplay e loop
           title="SomewCo Video Background"
           allow="autoplay; fullscreen; picture-in-picture"
           allowFullScreen
         />
       ) : (
-        <Image src="/#" alt="Background" fill priority className="object-cover opacity-60" />
+        // Fallback enquanto o vídeo não carrega ou se não houver vídeo
+        <Image src="/imgProjects/transborda-poster.JPG" alt="Background" fill priority className="object-cover opacity-50" />
       )}
 
-      {/* Camada escura sobreposta */}
-      <div className="absolute inset-0 bg-black/40" />
+      {/* Camada escura sobreposta para legibilidade do texto, se necessário */}
+      {/* <div className="absolute inset-0 bg-black/30" /> */}
 
       {/* Texto central esquerdo */}
       <div
@@ -48,3 +49,4 @@ export function Hero() {
     </section>
   );
 }
+
