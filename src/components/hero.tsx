@@ -20,13 +20,13 @@ export function Hero() {
 
   return (
     <section className="relative h-screen w-full bg-black text-white overflow-hidden">
-      {/* Vídeo de fundo via YouTube */}
+      {/* Vídeo de fundo via Vimeo */}
       {videoStarted ? (
         <iframe
           className="absolute inset-0 w-full h-full object-cover opacity-60 scale-110 pointer-events-none"
-          src="https://www.youtube.com/embed/NoC8fDjzmMc?autoplay=1&mute=1&controls=0&loop=1&playlist=NoC8fDjzmMc&modestbranding=1&showinfo=0&rel=0"
-          title="SomewCo Video"
-          allow="autoplay; fullscreen"
+          src="https://player.vimeo.com/video/1046975324?badge=0&autopause=0&player_id=0&app_id=58479&autoplay=1&loop=1&autopause=0&muted=1&controls=0&title=0&byline=0&portrait=0" // Nova URL do Vimeo com parâmetros de autoplay e loop
+          title="SomewCo Video Background"
+          allow="autoplay; fullscreen; picture-in-picture"
           allowFullScreen
         />
       ) : (

@@ -1,8 +1,8 @@
-import { Header } from "@/components/header"
-import { Navigation } from "@/components/navigation"
-import { Hero } from "@/components/hero"
-import { LatestWorks } from "@/components/latest-works"
-import { Footer } from "@/components/footer"
+import { Header } from "@/components/header";
+import { Navigation } from "@/components/navigation";
+import { Hero } from "@/components/hero";
+import { LatestWorks } from "@/components/latest-works";
+import { Footer } from "@/components/footer";
 
 export default function Home() {
   return (
@@ -13,5 +13,5 @@ export default function Home() {
       <Footer />
       <Navigation />
     </main>
-  )
+  );
 }
