@@ -31,7 +31,7 @@ export function Hero() {
         />
       ) : (
         // Fallback enquanto o vídeo não carrega ou se não houver vídeo
-        <Image src="/imgProjects/transborda-poster.JPG" alt="Background" fill priority className="object-cover opacity-50" />
+        <Image src="/#" alt="Background" fill priority className="object-cover opacity-50" />
       )}
 
       {/* Camada escura sobreposta para legibilidade do texto, se necessário */}
@@ -49,4 +49,3 @@ export function Hero() {
     </section>
   );
 }
-
