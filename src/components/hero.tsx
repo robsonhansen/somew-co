@@ -23,7 +23,7 @@ export function Hero() {
       {/* Vídeo de fundo via Vimeo */}
       {videoStarted ? (
         <iframe
-          className="absolute inset-0 w-full h-full object-cover pointer-events-none" // Removido opacity-60 e scale-110 para preenchimento total
+          className="absolute inset-0 w-full h-full object-cover scale-250 transition-transform duration-700 ease-in-out pointer-events-none"
           src="https://player.vimeo.com/video/1046975324?badge=0&autopause=0&player_id=0&app_id=58479&autoplay=1&loop=1&autopause=0&muted=1&controls=0&title=0&byline=0&portrait=0&background=1" // Nova URL do Vimeo com parâmetros de autoplay e loop
           title="SomewCo Video Background"
           allow="autoplay; fullscreen; picture-in-picture"
