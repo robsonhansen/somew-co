@@ -50,14 +50,15 @@ export function Navigation() {
         isVisible ? "translate-y-0 opacity-100" : "translate-y-20 opacity-0"
       }`}
     >
-      <div className="flex items-center justify-center bg-black backdrop-blur-md rounded-full px-8 py-2.5 shadow-lg border border-white/5">
+      {/* Removidas classes de fundo, borda, sombra e preenchimento do contêiner */}
+      <div className="flex items-center justify-center">
         <Link
           href="/"
           className={`flex flex-col items-center mx-4 transition-colors ${
             isActive("/") ? "text-white" : "text-gray-400 hover:text-white"
           }`}
         >
-          <Home size={20} />
+          <Home size={24} /> {/* Aumentei um pouco o tamanho do ícone para melhor visibilidade sem fundo */}
           <span className="text-xs mt-1">{t("home")}</span>
         </Link>
 
@@ -67,7 +68,7 @@ export function Navigation() {
             isActive("/projects") ? "text-white" : "text-gray-400 hover:text-white"
           }`}
         >
-          <Film size={20} />
+          <Film size={24} /> {/* Aumentei um pouco o tamanho do ícone */}
           <span className="text-xs mt-1">{t("projects")}</span>
         </Link>
 
@@ -77,10 +78,11 @@ export function Navigation() {
             isActive("/about") ? "text-white" : "text-gray-400 hover:text-white"
           }`}
         >
-          <Info size={20} />
+          <Info size={24} /> {/* Aumentei um pouco o tamanho do ícone */}
           <span className="text-xs mt-1">{t("about")}</span>
         </Link>
       </div>
     </nav>
   );
 }
+
