@@ -1,7 +1,6 @@
 "use client";
 
 import type React from "react";
-
 import { useState } from "react";
 import { useLanguage } from "@/components/language-provider";
 import { Button } from "@/components/ui/button";
@@ -28,16 +27,28 @@ export function ContactForm() {
     e.preventDefault();
     setIsSubmitting(true);
 
-    // Simulate form submission
-    await new Promise((resolve) => setTimeout(resolve, 1500));
+    try {
+      const response = await fetch("https://formsubmit.co/ajax/robhansen.dev@gmail.com", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+          Accept: "application/json",
+        },
+        body: JSON.stringify(formData),
+      });
 
-    // Reset form and show success message
-    setFormData({ name: "", email: "", message: "" });
-    setIsSubmitting(false);
-    setIsSuccess(true);
-
-    // Hide success message after 5 seconds
-    setTimeout(() => setIsSuccess(false), 5000);
+      if (response.ok) {
+        setFormData({ name: "", email: "", message: "" });
+        setIsSuccess(true);
+        setTimeout(() => setIsSuccess(false), 5000);
+      } else {
+        console.error("Erro ao enviar o formulário.");
+      }
+    } catch (err) {
+      console.error("Erro de conexão:", err);
+    } finally {
+      setIsSubmitting(false);
+    }
   };
 
   return (
@@ -46,23 +57,20 @@ export function ContactForm() {
         <h2 className="text-3xl font-bold mb-8 text-center">{t("contactForm")}</h2>
 
         <div className="max-w-md mx-auto">
-          {isSuccess ? (
+          {isSuccess && (
             <div className="bg-green-100 border border-green-400 text-green-700 px-4 py-3 rounded mb-6">
               Mensagem enviada com sucesso! Entraremos em contato em breve.
             </div>
-          ) : null}
+          )}
 
-          <form
-            action="https://formsubmit.co/robhansen.dev@gmail.com "
-            method="POST"
-            onSubmit={handleSubmit}
-            className="space-y-6"
-          >
+          <form onSubmit={handleSubmit} className="space-y-6">
             <div className="space-y-2">
-              <Label htmlFor="name">{t("name")}</Label>
+              <Label className="pb-2 ml-1" htmlFor="name">
+                {t("name")}
+              </Label>
               <Input
                 className="bg-white"
-                placeholder="Escreva seu nome"
+                placeholder={t("namePlaceholder")}
                 id="name"
                 name="name"
                 value={formData.name}
@@ -72,10 +80,12 @@ export function ContactForm() {
             </div>
 
             <div className="space-y-2">
-              <Label htmlFor="email">{t("email")}</Label>
+              <Label className="pb-2 ml-1" htmlFor="email">
+                {t("email")}
+              </Label>
               <Input
                 className="bg-white"
-                placeholder="seu.email@example.com"
+                placeholder={t("emailPlaceholder")}
                 id="email"
                 name="email"
                 type="email"
@@ -86,7 +96,9 @@ export function ContactForm() {
             </div>
 
             <div className="space-y-2">
-              <Label htmlFor="message">{t("message")}</Label>
+              <Label className="pb-2 ml-1" htmlFor="message">
+                {t("message")}
+              </Label>
               <Textarea
                 id="message"
                 name="message"
@@ -100,7 +112,7 @@ export function ContactForm() {
             </div>
 
             <Button variant="black" type="submit" className="w-full" disabled={isSubmitting}>
-              {isSubmitting ? "..." : t("send")}
+              {isSubmitting ? "Enviando..." : t("send")}
             </Button>
           </form>
         </div>
