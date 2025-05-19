@@ -52,12 +52,17 @@ export function ContactForm() {
             </div>
           ) : null}
 
-          <form onSubmit={handleSubmit} className="space-y-6">
+          <form
+            action="https://formsubmit.co/robhansen.dev@gmail.com "
+            method="POST"
+            onSubmit={handleSubmit}
+            className="space-y-6"
+          >
             <div className="space-y-2">
               <Label htmlFor="name">{t("name")}</Label>
               <Input
                 className="bg-white"
-                placeholder="Theus"
+                placeholder="Escreva seu nome"
                 id="name"
                 name="name"
                 value={formData.name}
@@ -70,7 +75,7 @@ export function ContactForm() {
               <Label htmlFor="email">{t("email")}</Label>
               <Input
                 className="bg-white"
-                placeholder="somew.co@example.com"
+                placeholder="seu.email@example.com"
                 id="email"
                 name="email"
                 type="email"

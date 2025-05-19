@@ -25,7 +25,7 @@ export function AboutContent() {
             </div>
           </div>
 
-          <div>
+          <div className="mt-1 ml-9">
             <h3 className="text-xl font-bold mb-4">{t("generalInquiries")}</h3>
             <p className="mb-2">somew.co@gmail.com</p>
             <p className="mb-6">+55 (11) 93079-7469</p>
