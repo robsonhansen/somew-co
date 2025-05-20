@@ -1,6 +1,8 @@
 "use client";
 
 import { useLanguage } from "@/components/language-provider";
+import { Instagram, Facebook, Linkedin, Youtube } from "lucide-react";
+import Link from "next/link";
 
 export function AboutContent() {
   const { t } = useLanguage();
@@ -39,6 +41,23 @@ export function AboutContent() {
             >
               WhatsApp
             </a>
+            <div className="mt-5">
+              <h3 className="text-xl font-bold mb-4">{t("followUs")}</h3>
+              <div className="flex space-x-4">
+                <Link href="https://instagram.com" target="_blank" rel="noopener noreferrer" aria-label="Instagram">
+                  <Instagram className="h-6 w-6" />
+                </Link>
+                <Link href="https://facebook.com" target="_blank" rel="noopener noreferrer" aria-label="Facebook">
+                  <Facebook className="h-6 w-6" />
+                </Link>
+                <Link href="https://linkedin.com" target="_blank" rel="noopener noreferrer" aria-label="LinkedIn">
+                  <Linkedin className="h-6 w-6" />
+                </Link>
+                <Link href="https://youtube.com" target="_blank" rel="noopener noreferrer" aria-label="YouTube">
+                  <Youtube className="h-6 w-6" />
+                </Link>
+              </div>
+            </div>
           </div>
         </div>
       </div>
