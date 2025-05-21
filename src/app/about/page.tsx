@@ -1,8 +1,8 @@
-import { Header } from "@/components/header"
-import { Navigation } from "@/components/navigation"
-import { AboutContent } from "@/components/about-content"
-import { ContactForm } from "@/components/contact-form"
-import { Footer } from "@/components/footer"
+import { Header } from "@/components/header";
+import { Navigation } from "@/components/navigation";
+import { AboutContent } from "@/components/about-content";
+import { ContactForm } from "@/components/contact-form";
+import { Footer } from "@/components/footer";
 
 export default function AboutPage() {
   return (
@@ -15,5 +15,5 @@ export default function AboutPage() {
       <Footer />
       <Navigation />
     </main>
-  )
+  );
 }

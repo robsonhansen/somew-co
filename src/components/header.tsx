@@ -5,10 +5,12 @@ import { Logo } from "@/components/logo";
 import { Button } from "@/components/ui/button";
 import { useLanguage } from "@/components/language-provider";
 import { useState, useEffect } from "react";
+import { usePathname } from "next/navigation";
 
 export function Header() {
   const { language, setLanguage } = useLanguage();
   const [logoOpacity, setLogoOpacity] = useState(1);
+  const pathname = usePathname();
 
   const toggleLanguage = () => {
     setLanguage(language === "pt" ? "en" : "pt");
@@ -40,15 +42,17 @@ export function Header() {
           className="flex items-center"
           style={{ opacity: logoOpacity, transition: "opacity 0.3s ease-out" }}
         >
-          <Logo className="h-18 w-auto" />
+          <Logo className="h-16 w-auto" />
         </Link>
       </div>
 
-      <div className="absolute top-4 right-4">
-        <Button variant="ghost" onClick={toggleLanguage} className="text-white hover:text-gray-300 transition-colors">
-          {language === "pt" ? "EN" : "PT"}
-        </Button>
-      </div>
+      {pathname !== "/" && (
+        <div className="absolute top-4 right-4">
+          <Button variant="ghost" onClick={toggleLanguage} className="text-black hover:text-gray-300 transition-colors">
+            {language === "pt" ? "EN" : "PT"}
+          </Button>
+        </div>
+      )}
     </header>
   );
 }

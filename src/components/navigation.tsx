@@ -3,46 +3,52 @@
 import Link from "next/link";
 import { useState, useEffect } from "react";
 import { usePathname } from "next/navigation";
-import { Home, Film, Info } from "lucide-react";
+import { Film, Info } from "lucide-react";
 import { useLanguage } from "@/components/language-provider";
 
 export function Navigation() {
   const pathname = usePathname();
   const { t } = useLanguage();
+
+  // Estado para controlar se a navegação já pode ser mostrada
+  const [canRender, setCanRender] = useState(false);
+
+  // Estado e lógica já existente para esconder o nav na scroll
   const [isVisible, setIsVisible] = useState(true);
   const [lastScrollY, setLastScrollY] = useState(0);
 
-  // Controlar a visibilidade da barra de navegação com base na rolagem
   useEffect(() => {
+    // Delay para ativar a renderização da navegação (ex: 2s)
+    const timer = setTimeout(() => setCanRender(true), 4000);
+    return () => clearTimeout(timer);
+  }, []);
+
+  useEffect(() => {
+    if (!canRender) return; // só adiciona listener depois do delay
+
     const controlNavbar = () => {
       if (typeof window !== "undefined") {
-        // Se estiver rolando para baixo e não estiver no topo, ocultar a barra
         if (window.scrollY > lastScrollY && window.scrollY > 70) {
           setIsVisible(false);
         } else {
-          // Se estiver rolando para cima ou no topo, mostrar a barra
           setIsVisible(true);
         }
-        // Atualizar a posição de rolagem
         setLastScrollY(window.scrollY);
       }
     };
 
-    // Adicionar o evento de rolagem
     window.addEventListener("scroll", controlNavbar);
+    return () => window.removeEventListener("scroll", controlNavbar);
+  }, [lastScrollY, canRender]);
 
-    // Limpar o evento quando o componente for desmontado
-    return () => {
-      window.removeEventListener("scroll", controlNavbar);
-    };
-  }, [lastScrollY]);
-
-  // Verificar se o link está ativo
   const isActive = (path: string) => {
     if (path === "/" && pathname === "/") return true;
     if (path !== "/" && pathname.startsWith(path)) return true;
     return false;
   };
+
+  // Se não pode renderizar ainda, retorna null para nada mostrar
+  if (!canRender) return null;
 
   return (
     <nav
@@ -50,7 +56,6 @@ export function Navigation() {
         isVisible ? "translate-y-0 opacity-100" : "translate-y-20 opacity-0"
       }`}
     >
-      {/* Removidas classes de fundo, borda, sombra e preenchimento do contêiner */}
       <div className="flex items-center justify-center">
         <Link
           href="/"
@@ -58,18 +63,8 @@ export function Navigation() {
             isActive("/") ? "text-white" : "text-gray-400 hover:text-white"
           }`}
         >
-          <Home size={24} /> {/* Aumentei um pouco o tamanho do ícone para melhor visibilidade sem fundo */}
-          <span className="text-xs mt-1">{t("home")}</span>
-        </Link>
-
-        <Link
-          href="/projects"
-          className={`flex flex-col items-center mx-4 transition-colors ${
-            isActive("/projects") ? "text-white" : "text-gray-400 hover:text-white"
-          }`}
-        >
-          <Film size={24} /> {/* Aumentei um pouco o tamanho do ícone */}
-          <span className="text-xs mt-1">{t("projects")}</span>
+          <Film size={24} />
+          <span className="text-xs mt-1">{t("Projects")}</span>
         </Link>
 
         <Link
@@ -78,11 +73,10 @@ export function Navigation() {
             isActive("/about") ? "text-white" : "text-gray-400 hover:text-white"
           }`}
         >
-          <Info size={24} /> {/* Aumentei um pouco o tamanho do ícone */}
+          <Info size={24} />
           <span className="text-xs mt-1">{t("about")}</span>
         </Link>
       </div>
     </nav>
   );
 }
-
